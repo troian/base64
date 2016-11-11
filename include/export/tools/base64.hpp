@@ -28,6 +28,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdint>
 
 namespace tools {
 
@@ -51,7 +52,9 @@ public:
 	 *
 	 * \return  None
 	 */
-	static void encode(std::string &b64, std::vector<uint8_t> &stream);
+	static void encode(std::string &b64, const std::vector<uint8_t> &stream);
+
+	static void encode(std::string &b64, const std::vector<uint8_t> * const stream);
 
 	/**
 	 * \brief
@@ -72,7 +75,7 @@ public:
 	 *
 	 * \return None
 	 */
-    static void encode(std::string &b64, const uint8_t *stream, size_t in_len);
+    static void encode(std::string &b64, const uint8_t * const stream, size_t in_len);
 
 	/**
 	 * \brief   Decode base64 string into array. Type T must be any kind of container

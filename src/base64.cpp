@@ -34,7 +34,7 @@ const std::string base64::base64_chars =
 		"abcdefghijklmnopqrstuvwxyz"
 		"0123456789+/";
 
-void base64::encode(std::string &b64, const uint8_t *stream, size_t in_len)
+void base64::encode(std::string &b64, const uint8_t * const stream, size_t in_len)
 {
 	int i = 0;
 	int k = 0;
@@ -77,9 +77,14 @@ void base64::encode(std::string &b64, const uint8_t *stream, size_t in_len)
 	}
 }
 
-void base64::encode(std::string &b64, std::vector<uint8_t> &stream)
+void base64::encode(std::string &b64, const std::vector<uint8_t> &stream)
 {
 	encode(b64, reinterpret_cast<const uint8_t *>(stream.data()), stream.size());
+}
+
+void base64::encode(std::string &b64, const std::vector<uint8_t> * const stream)
+{
+	encode(b64, reinterpret_cast<const uint8_t *>(stream->data()), stream->size());
 }
 
 void base64::encode(std::string &b64, const std::string &stream)
