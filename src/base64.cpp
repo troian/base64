@@ -44,10 +44,10 @@ void base64::encode(std::string &b64, const uint8_t * const stream, size_t in_le
 	while (in_len--) {
 		array_3[i++] = stream[k++];
 		if (i == 3) {
-			array_4[0] = (array_3[0] & 0xfc) >> 2;
-			array_4[1] = ((array_3[0] & 0x03) << 4) + ((array_3[1] & 0xf0) >> 4);
-			array_4[2] = ((array_3[1] & 0x0f) << 2) + ((array_3[2] & 0xc0) >> 6);
-			array_4[3] = array_3[2] & 0x3f;
+			array_4[0] = (uint8_t)(array_3[0] & 0xfc) >> 2;
+			array_4[1] = (uint8_t)(((array_3[0] & 0x03) << 4) + ((array_3[1] & 0xf0) >> 4));
+			array_4[2] = (uint8_t)(((array_3[1] & 0x0f) << 2) + ((array_3[2] & 0xc0) >> 6));
+			array_4[3] = (array_3[2] & 0x3f);
 
 			for (i = 0; (i < 4); i++) {
 				b64 += base64_chars[array_4[i]];
@@ -62,8 +62,8 @@ void base64::encode(std::string &b64, const uint8_t * const stream, size_t in_le
 		}
 
 		array_4[0] = (array_3[0] & 0xfc) >> 2;
-		array_4[1] = ((array_3[0] & 0x03) << 4) + ((array_3[1] & 0xf0) >> 4);
-		array_4[2] = ((array_3[1] & 0x0f) << 2) + ((array_3[2] & 0xc0) >> 6);
+		array_4[1] = (uint8_t)(((array_3[0] & 0x03) << 4) + ((array_3[1] & 0xf0) >> 4));
+		array_4[2] = (uint8_t)(((array_3[1] & 0x0f) << 2) + ((array_3[2] & 0xc0) >> 6));
 		array_4[3] = array_3[2] & 0x3f;
 
 		for (int j = 0; (j < i + 1); j++) {
