@@ -93,8 +93,8 @@ public:
 		uint8_t array_3[3];
 		T ret;
 
-		while (in_len-- && (stream[in_] != '=') && is_base64(stream[in_])) {
-			array_4[i++] = stream[in_];
+		while (in_len-- && (stream[in_] != '=') && is_base64((uint8_t)stream[in_])) {
+			array_4[i++] = (uint8_t)stream[in_];
 			in_++;
 			if (i == 4) {
 				for (i = 0; i < 4; i++) {

@@ -24,7 +24,6 @@
  */
 
 #include <iostream>
-#include <string>
 
 #include <tools/base64.hpp>
 
@@ -47,7 +46,7 @@ void base64::encode(std::string &b64, const uint8_t * const stream, size_t in_le
 			array_4[0] = (uint8_t)(array_3[0] & 0xfc) >> 2;
 			array_4[1] = (uint8_t)(((array_3[0] & 0x03) << 4) + ((array_3[1] & 0xf0) >> 4));
 			array_4[2] = (uint8_t)(((array_3[1] & 0x0f) << 2) + ((array_3[2] & 0xc0) >> 6));
-			array_4[3] = (array_3[2] & 0x3f);
+			array_4[3] = (uint8_t)(array_3[2] & 0x3f);
 
 			for (i = 0; (i < 4); i++) {
 				b64 += base64_chars[array_4[i]];
@@ -61,10 +60,10 @@ void base64::encode(std::string &b64, const uint8_t * const stream, size_t in_le
 			array_3[j] = '\0';
 		}
 
-		array_4[0] = (array_3[0] & 0xfc) >> 2;
+		array_4[0] = (uint8_t)((array_3[0] & 0xfc) >> 2);
 		array_4[1] = (uint8_t)(((array_3[0] & 0x03) << 4) + ((array_3[1] & 0xf0) >> 4));
 		array_4[2] = (uint8_t)(((array_3[1] & 0x0f) << 2) + ((array_3[2] & 0xc0) >> 6));
-		array_4[3] = array_3[2] & 0x3f;
+		array_4[3] = (uint8_t)(array_3[2] & 0x3f);
 
 		for (int j = 0; (j < i + 1); j++) {
 			b64 += base64_chars[array_4[j]];
@@ -79,12 +78,12 @@ void base64::encode(std::string &b64, const uint8_t * const stream, size_t in_le
 
 void base64::encode(std::string &b64, const std::vector<uint8_t> &stream)
 {
-	encode(b64, reinterpret_cast<const uint8_t *>(stream.data()), stream.size());
+	encode(b64, stream.data(), stream.size());
 }
 
 void base64::encode(std::string &b64, const std::vector<uint8_t> * const stream)
 {
-	encode(b64, reinterpret_cast<const uint8_t *>(stream->data()), stream->size());
+	encode(b64, stream->data(), stream->size());
 }
 
 void base64::encode(std::string &b64, const std::string &stream)
