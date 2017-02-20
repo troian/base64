@@ -93,17 +93,17 @@ public:
 		uint8_t array_3[3];
 		T ret;
 
-		while (in_len-- && (stream[in_] != '=') && is_base64((uint8_t)stream[in_])) {
-			array_4[i++] = (uint8_t)stream[in_];
+		while (in_len-- && (stream[in_] != '=') && is_base64(static_cast<uint8_t>(stream[in_]))) {
+			array_4[i++] = static_cast<uint8_t>(stream[in_]);
 			in_++;
 			if (i == 4) {
 				for (i = 0; i < 4; i++) {
-					array_4[i] = (uint8_t)base64_chars.find(array_4[i]);
+					array_4[i] = static_cast<uint8_t>((base64_chars.find(array_4[i])));
 				}
 
-				array_3[0] = (uint8_t)((array_4[0] << 2) + ((array_4[1] & 0x30) >> 4));
-				array_3[1] = (uint8_t)(((array_4[1] & 0xf) << 4) + ((array_4[2] & 0x3c) >> 2));
-				array_3[2] = (uint8_t)(((array_4[2] & 0x3) << 6) + array_4[3]);
+				array_3[0] = static_cast<uint8_t>(((array_4[0] << 2) + ((array_4[1] & 0x30) >> 4)));
+				array_3[1] = static_cast<uint8_t>((((array_4[1] & 0xf) << 4) + ((array_4[2] & 0x3c) >> 2)));
+				array_3[2] = static_cast<uint8_t>((((array_4[2] & 0x3) << 6) + array_4[3]));
 
 				for (i = 0; (i < 3); i++) {
 					ret.push_back(array_3[i]);
@@ -119,12 +119,12 @@ public:
 			}
 
 			for (int j = 0; j < 4; j++) {
-				array_4[j] = (uint8_t)base64_chars.find(array_4[j]);
+				array_4[j] = static_cast<uint8_t>(base64_chars.find(array_4[j]));
 			}
 
-			array_3[0] = (uint8_t)((array_4[0] << 2) + ((array_4[1] & 0x30) >> 4));
-			array_3[1] = (uint8_t)((uint8_t)(((array_4[1] & 0xf) << 4) + ((array_4[2] & 0x3c) >> 2)));
-			array_3[2] = (uint8_t)((uint8_t)(((array_4[2] & 0x3) << 6) + array_4[3]));
+			array_3[0] = static_cast<uint8_t>(((array_4[0] << 2) + ((array_4[1] & 0x30) >> 4)));
+			array_3[1] = static_cast<uint8_t>(((((array_4[1] & 0xf) << 4) + ((array_4[2] & 0x3c) >> 2))));
+			array_3[2] = static_cast<uint8_t>(((((array_4[2] & 0x3) << 6) + array_4[3])));
 
 			for (int j = 0; (j < i - 1); j++) {
 				ret.push_back(array_3[j]);
