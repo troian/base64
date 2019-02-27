@@ -54,7 +54,7 @@ public:
 	 */
 	static void encode(std::string &b64, const std::vector<uint8_t> &stream);
 
-	static void encode(std::string &b64, const std::vector<uint8_t> * const stream);
+	static void encode(std::string &b64, const std::vector<uint8_t> *stream);
 
 	/**
 	 * \brief
@@ -75,7 +75,7 @@ public:
 	 *
 	 * \return None
 	 */
-    static void encode(std::string &b64, const uint8_t * const stream, size_t in_len);
+	static void encode(std::string &b64, const uint8_t *stream, size_t in_len);
 
 	/**
 	 * \brief   Decode base64 string into array. Type T must be any kind of container
@@ -101,9 +101,9 @@ public:
 					array_4[i] = static_cast<uint8_t>((base64_chars.find(array_4[i])));
 				}
 
-				array_3[0] = static_cast<uint8_t>(((array_4[0] << 2) + ((array_4[1] & 0x30) >> 4)));
-				array_3[1] = static_cast<uint8_t>((((array_4[1] & 0xf) << 4) + ((array_4[2] & 0x3c) >> 2)));
-				array_3[2] = static_cast<uint8_t>((((array_4[2] & 0x3) << 6) + array_4[3]));
+				array_3[0] = static_cast<uint8_t>(((array_4[0] << 2U) + ((array_4[1] & 0x30U) >> 4U)));
+				array_3[1] = static_cast<uint8_t>((((array_4[1] & 0xFU) << 4U) + ((array_4[2] & 0x3CU) >> 2U)));
+				array_3[2] = static_cast<uint8_t>((((array_4[2] & 0x3U) << 6U) + array_4[3]));
 
 				for (i = 0; (i < 3); i++) {
 					ret.push_back(array_3[i]);
@@ -122,9 +122,9 @@ public:
 				array_4[j] = static_cast<uint8_t>(base64_chars.find(array_4[j]));
 			}
 
-			array_3[0] = static_cast<uint8_t>(((array_4[0] << 2) + ((array_4[1] & 0x30) >> 4)));
-			array_3[1] = static_cast<uint8_t>(((((array_4[1] & 0xf) << 4) + ((array_4[2] & 0x3c) >> 2))));
-			array_3[2] = static_cast<uint8_t>(((((array_4[2] & 0x3) << 6) + array_4[3])));
+			array_3[0] = static_cast<uint8_t>(((array_4[0] << 2U) + ((array_4[1] & 0x30U) >> 4U)));
+			array_3[1] = static_cast<uint8_t>(((((array_4[1] & 0xFU) << 4U) + ((array_4[2] & 0x3CU) >> 2U))));
+			array_3[2] = static_cast<uint8_t>(((((array_4[2] & 0x3U) << 6U) + array_4[3])));
 
 			for (int j = 0; (j < i - 1); j++) {
 				ret.push_back(array_3[j]);

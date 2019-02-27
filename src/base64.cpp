@@ -43,10 +43,10 @@ void base64::encode(std::string &b64, const uint8_t * const stream, size_t in_le
 	while (in_len--) {
 		array_3[i++] = stream[k++];
 		if (i == 3) {
-			array_4[0] = static_cast<uint8_t>((array_3[0] & 0xfc) >> 2);
-			array_4[1] = static_cast<uint8_t>((((array_3[0] & 0x03) << 4) + ((array_3[1] & 0xf0) >> 4)));
-			array_4[2] = static_cast<uint8_t>((((array_3[1] & 0x0f) << 2) + ((array_3[2] & 0xc0) >> 6)));
-			array_4[3] = static_cast<uint8_t>((array_3[2] & 0x3f));
+			array_4[0] = static_cast<uint8_t>((array_3[0] & 0xFCU) >> 2U);
+			array_4[1] = static_cast<uint8_t>((((array_3[0] & 0x03U) << 4U) + ((array_3[1] & 0xF0U) >> 4U)));
+			array_4[2] = static_cast<uint8_t>((((array_3[1] & 0x0FU) << 2U) + ((array_3[2] & 0xC0U) >> 6U)));
+			array_4[3] = static_cast<uint8_t>((array_3[2] & 0x3FU));
 
 			for (i = 0; (i < 4); i++) {
 				b64 += base64_chars[array_4[i]];
@@ -60,10 +60,10 @@ void base64::encode(std::string &b64, const uint8_t * const stream, size_t in_le
 			array_3[j] = '\0';
 		}
 
-		array_4[0] = static_cast<uint8_t>(((array_3[0] & 0xfc) >> 2));
-		array_4[1] = static_cast<uint8_t>((((array_3[0] & 0x03) << 4) + ((array_3[1] & 0xf0) >> 4)));
-		array_4[2] = static_cast<uint8_t>((((array_3[1] & 0x0f) << 2) + ((array_3[2] & 0xc0) >> 6)));
-		array_4[3] = static_cast<uint8_t>((array_3[2] & 0x3f));
+		array_4[0] = static_cast<uint8_t>(((array_3[0] & 0xFCU) >> 2U));
+		array_4[1] = static_cast<uint8_t>((((array_3[0] & 0x03U) << 4U) + ((array_3[1] & 0xF0U) >> 4U)));
+		array_4[2] = static_cast<uint8_t>((((array_3[1] & 0x0FU) << 2U) + ((array_3[2] & 0xC0U) >> 6U)));
+		array_4[3] = static_cast<uint8_t>((array_3[2] & 0x3FU));
 
 		for (int j = 0; (j < i + 1); j++) {
 			b64 += base64_chars[array_4[j]];
